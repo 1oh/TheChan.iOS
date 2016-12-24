@@ -36,7 +36,9 @@ window.onload = function () {
 		methods: {
 			fetchRequests: function (type) {
 
-				this.$http.get(this.api.requests + type)
+				var params = {params: {type: type} };
+
+				this.$http.get(this.api.requests + 'type', params )
 				.then(function(response) {
 					if (response.body.status === 'success')
 						this.requests = response.body.requests;
@@ -62,7 +64,7 @@ window.onload = function () {
 						event.target.innerText = response.body.request.vote + ' ▲';
 	
 					if (response.body.status === 'error')
-						console.error(response.body);
+						console.error(response.body.massage);
 				})
 				.catch(function(error) {
 					console.error(error);
@@ -72,17 +74,21 @@ window.onload = function () {
 				});
 			},
 			submitRequest: function (newRequest, event) {
+
 				event.preventDefault();
 
 				event.target.disabled = true;
 
-				this.$http.post(this.api.requests + newRequest)
+				var formData = new FormData();
+				formData.append('newRequest', newRequest);
+
+				this.$http.post(this.api.requests + 'add', formData )
 				.then(function(response) {
 					if (response.body.status === 'success')
 						this.requests.unshift(response.body.request);
 	
 					if (response.body.status === 'error')
-						console.error(response.body);
+						console.error(response.body.massage);
 				})
 				.catch(function(error) {
 					console.error(error);
@@ -102,13 +108,6 @@ window.onload = function () {
 	var app = new Vue({
 
 		el: '#app',
-
-		http: {
-			options: {
-				emulateJSON: true,
-				emulateHTTP: true
-			}
-		},
 
 		created: function () {
 			// Ну вообще юмор
