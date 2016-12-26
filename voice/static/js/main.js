@@ -11,7 +11,7 @@ window.onload = function () {
 
 		data: function () {
 			return {
-				requests: [],
+				requests: {},
 				error: false,
 				loaded: false,
 				api: {
@@ -53,26 +53,6 @@ window.onload = function () {
 					this.loaded = true;
 				});
 			},
-			submitVote: function (id, event) {
-				event.preventDefault();
-
-				event.target.disabled = true;
-
-				this.$http.post(this.api.vote + id)
-				.then(function(response) {
-					if (response.body.status === 'success')
-						event.target.innerText = response.body.request.vote + ' ▲';
-	
-					if (response.body.status === 'error')
-						console.error(response.body.massage);
-				})
-				.catch(function(error) {
-					console.error(error);
-				})
-				.finally(function() {
-					event.target.disabled = false;
-				});
-			},
 			submitRequest: function (newRequest, event) {
 
 				event.preventDefault();
@@ -86,7 +66,7 @@ window.onload = function () {
 				.then(function(response) {
 					if (response.body.status === 'success')
 						this.requests.unshift(response.body.request);
-	
+
 					if (response.body.status === 'error')
 						console.error(response.body.massage);
 				})
@@ -96,6 +76,33 @@ window.onload = function () {
 				.finally(function() {
 					event.target.disabled = false;
 					this.newRequest = '';
+				});
+			},
+			submitVote: function (id, event) {
+				event.preventDefault();
+
+				event.target.disabled = true;
+
+				this.$http.post(this.api.vote + id)
+				.then(function(response) {
+
+					if (response.body.status === 'success') {
+						var len = this.requests.length;
+						for (var i=0; i<len; i++) {
+							if (this.requests[i]['id'] == id) {
+								this.requests[i]['vote'] = response.body.request.vote;
+							}
+						}
+					}
+					
+					if (response.body.status === 'error')
+						console.error(response.body.massage);
+				})
+				.catch(function(error) {
+					console.error(error);
+				})
+				.finally(function() {
+					event.target.disabled = false;
 				});
 			}
 		}
