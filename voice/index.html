@@ -43,7 +43,7 @@
 						</div>
 						<div class="request__footer">
 							<button class="btn request__btn" v-on:click="submitVote(request.id, $event)">{{ request.vote }} ▲</button>
-							<span class="request__status" v-if="request.status != ''">{{ request.status }}</span>
+							<span class="request__status" v-if="request.status != ''" v-bind:class="getClassByStatus(request.status)">{{ request.status }}</span>
 						</div>
 					</div>
 				</div>

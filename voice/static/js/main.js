@@ -15,8 +15,7 @@ window.onload = function () {
 				error: false,
 				loaded: false,
 				api: {
-					requests: 'https://thevoice.yuriy.gr/requests/',
-					vote: 'https://thevoice.yuriy.gr/vote/'
+					requests: 'https://thevoice.yuriy.gr/requests',
 				},
 				newRequest: '',
 				lengthLimit: 255
@@ -38,7 +37,7 @@ window.onload = function () {
 
 				var params = {params: {type: type} };
 
-				this.$http.get(this.api.requests + 'type', params )
+				this.$http.get(this.api.requests + '.getByType', params)
 				.then(function(response) {
 					if (response.body.status === 'success')
 						this.requests = response.body.requests;
@@ -60,9 +59,9 @@ window.onload = function () {
 				event.target.disabled = true;
 
 				var formData = new FormData();
-				formData.append('newRequest', newRequest);
+				formData.append('request_text', newRequest);
 
-				this.$http.post(this.api.requests + 'add', formData )
+				this.$http.post(this.api.requests + '.addRequest', formData)
 				.then(function(response) {
 					if (response.body.status === 'success')
 						this.requests.unshift(response.body.request);
@@ -78,23 +77,26 @@ window.onload = function () {
 					this.newRequest = '';
 				});
 			},
-			submitVote: function (id, event) {
+			submitVote: function (request_id, event) {
 				event.preventDefault();
 
 				event.target.disabled = true;
 
-				this.$http.post(this.api.vote + id)
-				.then(function(response) {
+				var formData = new FormData();
+				formData.append('request_id', request_id);
 
+				this.$http.post(this.api.requests + '.addVote', formData)
+				.then(function(response) {
 					if (response.body.status === 'success') {
 						var len = this.requests.length;
-						for (var i=0; i<len; i++) {
-							if (this.requests[i]['id'] == id) {
+						for (var i = 0; i < len; i++) {
+							if (this.requests[i]['id'] == request_id) {
 								this.requests[i]['vote'] = response.body.request.vote;
+								break;
 							}
 						}
 					}
-					
+
 					if (response.body.status === 'error')
 						console.error(response.body.massage);
 				})
@@ -104,6 +106,9 @@ window.onload = function () {
 				.finally(function() {
 					event.target.disabled = false;
 				});
+			},
+			getClassByStatus: function (status) {
+				return status.toLowerCase().split(' ').join('-');
 			}
 		}
 

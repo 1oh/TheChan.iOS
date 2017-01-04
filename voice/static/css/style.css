@@ -141,6 +141,9 @@ section {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
+.request__status.not-now { color: #bababa; }
+.request__status.in-development { color: #f7189e; }
+.request__status.planned { color: #499bff; }
 .request__letterCount {
 	color: #716c6c;
 	font-weight: 700;
