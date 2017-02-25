@@ -12,7 +12,7 @@ body {
   background: #111;
   color: white;
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
   display: flex;
   flex-direction: row;
 }
