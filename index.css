@@ -1,5 +1,5 @@
 * {
-  font-family: Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -9,65 +9,101 @@ html {
 }
 
 body {
-  background: #FAFAFA;
-  color: #1A1A1A;
+  background: #111;
+  color: white;
   height: 100%;
+  overflow: scroll;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
 }
 
 h1 {
+  font-weight: 900;
   text-transform: uppercase;
-  font-size: 3em;
+  font-size: 3.5em;
+  letter-spacing: 5px;
 }
 
 h2 {
   font-weight: 300;
-  font-style: oblique;
-  text-transform: uppercase;
-  margin-top: 0.7em;
+  font-size: 1.8em;
+  margin-top: 10px;
+  margin-bottom: 1em;
 }
 
-#appstore {
+a {
+  border-left: 3px solid #CCC;
+  padding: 0.5em 1em;
+  color: #CCC;
   text-decoration: none;
-  background: rgba(17,17,17,1);
-  background: -moz-linear-gradient(top, rgba(17,17,17,1) 0%, rgba(53,53,53,1) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(17,17,17,1)), color-stop(100%, rgba(53,53,53,1)));
-  background: -webkit-linear-gradient(top, rgba(17,17,17,1) 0%, rgba(53,53,53,1) 100%);
-  background: -o-linear-gradient(top, rgba(17,17,17,1) 0%, rgba(53,53,53,1) 100%);
-  background: -ms-linear-gradient(top, rgba(17,17,17,1) 0%, rgba(53,53,53,1) 100%);
-  background: linear-gradient(to bottom, rgba(17,17,17,1) 0%, rgba(53,53,53,1) 100%);
-  color: white;
-  font-size: 0.8em;
   text-transform: uppercase;
-  padding: 1.5em;
-  border-radius: 10px;
-  transition: background 0.1s ease-in-out;
-  -webkit-transition: background 0.1s ease-in-out;
-  margin-top: 3em;
-}
-
-#appstore:hover {
-  background: rgba(17,17,17,1);
-  background: -moz-linear-gradient(top, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(17,17,17,1)), color-stop(100%, rgba(17,17,17,1)));
-  background: -webkit-linear-gradient(top, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 100%);
-  background: -o-linear-gradient(top, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 100%);
-  background: -ms-linear-gradient(top, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 100%);
-  background: linear-gradient(to bottom, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 100%);
-}
-
-#chans {
-  text-transform: uppercase;
-  font-size: 1.2em;
-  font-weight: 300;
-  font-style: oblique;
+  font-weight: 500;
+  font-size: 1em;
   margin-top: 1em;
+  transition: all 0.1s ease-in-out;
 }
 
-.chan {
-  font-weight: normal;
-  margin: 0 0.1em;
+a:hover {
+  border-color: #FFF;
+  color: #FFF;
+}
+
+.preview {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.preview-image {
+  background: url('img/phone.png') no-repeat right center;
+  background-size: contain;
+  max-height: 720px;
+  min-height: 360px;
+  margin-right: 40px;
+  flex-grow: 1;
+}
+
+.info {
+  flex-grow: 1;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (max-width: 960px) {
+  body {
+    display: block;
+  }
+
+  .preview {
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  .preview-image {
+    margin: 0;
+    background-position-x: center;
+  }
+
+  .info {
+    justify-content: flex-start;
+    padding-left: 40px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
 }
