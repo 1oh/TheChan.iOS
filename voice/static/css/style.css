@@ -14,7 +14,7 @@ Gray text #716c6c;
  html, body {
 	background-color: #111;
 	color: #FFF;
-	font-family: -apple-system, "Roboto", serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Roboto", serif;
 	line-height: 1.5;
 	font-size: 14px;
 	-webkit-font-smoothing: subpixel-antialiased;
