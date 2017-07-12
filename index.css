@@ -63,7 +63,6 @@ a:hover {
   background: url('img/phone.png') no-repeat right center;
   background-size: contain;
   max-height: 720px;
-  min-height: 360px;
   margin-right: 40px;
   flex-grow: 1;
 }
@@ -94,7 +93,7 @@ a:hover {
   .info {
     justify-content: flex-start;
     padding-left: 40px;
-    margin-bottom: 40px;
+    padding-bottom: 40px;
   }
 }
 
@@ -105,5 +104,15 @@ a:hover {
 
   h2 {
     font-size: 1.3em;
+  }
+}
+
+@media screen and (max-height: 500px){
+  .preview {
+    padding: 10px 0;
+  }
+
+  .info {
+    padding-top: 20px; 
   }
 }
