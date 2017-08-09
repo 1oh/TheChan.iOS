@@ -65,30 +65,26 @@ header > .warp {
 }
 .header__logo {
 	font-size: 3.3em;
-	font-weight: 700;
-	letter-spacing: 10px;
+	font-weight: 800;
 	user-select: none;
-	text-transform: uppercase;
 }
+
 .header__sublogo {
-	font-size: 1.6em;
-	font-weight: 700;
-	letter-spacing: 5px;
-	user-select: none;
-	margin-left: 1em;
-	text-transform: uppercase;
+	font-size: 0.6em;
+	font-weight: normal;
+	margin-left: 0.25em;
+	letter-spacing: 2px;
 }
 
 /* Section
  ================================== */
 section {
-	padding: 2em 0;
+	padding: 2em 1em 0 0;
 }
 .section__title {
 	font-size: 1.6em;
 	font-weight: 700;
-	letter-spacing: 5px;
-	text-transform: uppercase;
+	text-transform: none;
 	padding-bottom: 5px;
 	user-select: none;
 }
@@ -112,9 +108,10 @@ section {
  ================================== */
 .request__block {
 	background: #1a1a1a;
-	border: 1px solid #222222;
+	border-radius: 10px;
 	padding: 1em;
-	width: 25%;
+	margin: 0 0 1em 1em;
+	width: calc(25% - 1em);
 	min-height: 210px;
 	display: flex;
 	flex-direction: column;
@@ -133,8 +130,21 @@ section {
 	user-select: none;
 }
 .request__btn {
-	min-width: 70px;
+	min-width: 32px;
+	height: 32px;
+	padding: 0 !important;
 }
+
+.request__votes {
+	color: #77EA5D;
+	font-weight: bold;
+	margin-left: 0.2em;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	cursor: default;
+}
+
 .request__status {
 	color: #B8E986;
 	font-weight: 700;
@@ -209,24 +219,25 @@ section {
 
 /* Button's */
 .btn {
-	background-color: transparent;
-	color: #77EA5D;
-	border: 2px solid #77EA5D;
-	padding: 4px 6px;
+	color: #1a1a1a;
+	height: 32px;
+	background: #77EA5D;
+	border: none;
+	padding: 4px 12px;
 	display: inline-block;
 	outline: none;
-	-webkit-transition: border .3s, background .3s, color .3s;
-	transition: border .3s, background .3s, color .3s;
+	-webkit-transition: opacity .3s;
+	transition: opacity .3s;
 	text-align: center;
 	text-decoration: none;
 	cursor: pointer;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-o-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	-o-border-radius: 16px;
+	border-radius: 16px;
 	font-weight: 600;
 }
-.btn:hover { background-color: transparent; color: #B8E986; border-color: #B8E986; text-decoration: none; }
+.btn:hover { opacity: 0.65; }
 .btn.btn--text { background: transparent; border-color: transparent; }
 .btn.btn--big {
 	width: 100%;
@@ -258,17 +269,17 @@ textarea {
  ================================== */
  @media screen and (min-width: 1440px) {
 	.request__block {
-		width: 20%;
+		width: calc(20% - 1em);
 	}
 }
 @media screen and (max-width: 1150px) {
 	.request__block {
-		width: 33.333333333%;
+		width: calc(33.33333333% - 1em);;
 	}
 }
 @media screen and (max-width: 940px) {
 	.request__block {
-		width: 50%;
+		width: calc(50% - 1em);
 	}
 }
 @media screen and (max-width: 570px) {

@@ -8,7 +8,7 @@
 	<link rel="manifest" href="manifest.json">
 	<link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
 	
-	<title>THECHAN Uservoice</title>
+	<title>The Chan Uservoice</title>
 
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700&amp;subset=latin,cyrillic-ext">
 	<link rel="stylesheet" type="text/css" href="static/css/reset.css">
@@ -32,7 +32,7 @@
 							<textarea placeholder="Keep it short" type="text" v-bind:maxlength="lengthLimit" v-model="newRequest"></textarea>
 						</div>
 						<div class="request__footer">
-							<button class="btn request__btn" v-on:click="submitRequest(newRequest, $event)" v-bind:disabled="newRequestLength > lengthLimit || newRequestLength == 0">SUBMIT</button>
+							<button class="btn" v-on:click="submitRequest(newRequest, $event)" v-bind:disabled="newRequestLength > lengthLimit || newRequestLength == 0">SUBMIT</button>
 							<span class="request__letterCount">{{ newRequestLength }}/{{ lengthLimit }}</span>
 						</div>
 					</div>
@@ -42,7 +42,10 @@
 							{{ request.text }}
 						</div>
 						<div class="request__footer">
-							<button class="btn request__btn" v-on:click="submitVote(request.id, $event)">{{ request.vote }} ▲</button>
+							<span class="request__voting">
+								<button class="btn request__btn" v-on:click="submitVote(request.id, $event)">▲</button>
+								<span class="request__votes">{{ request.vote }}</span>
+							</span>
 							<span class="request__status" v-if="request.status != ''" v-bind:class="getClassByStatus(request.status)">{{ request.status }}</span>
 						</div>
 					</div>
@@ -64,8 +67,10 @@
 
 	<header>
 		<div class="warp">
-			<div class="header__logo">THECHAN</div>
-			<div class="header__sublogo">Uservoice</div>
+			<div class="header__logo">
+				the chan 
+				<span class="header__sublogo">uservoice</span>
+			</div>
 		</div>
 	</header>
 
