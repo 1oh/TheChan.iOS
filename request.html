@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,800" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
+    <link rel="stylesheet" type="text/css" href="styles/request.css">
+    <title>t/ch request</title>
+</head>
+<body>
+    <img src="img/Logo@2x.png" alt="t/ch" width="175">
+    <h1>Imageboard request</h1>
+    <div id="text">
+        Here you can request the imageboard that you would like to see in The Chan.<br>
+        Specify only the domain, please. Examples: <strong>4chan.org</strong>, <strong>8ch.net</strong>
+    </div>
+    <input type="text" id="imageboardName" placeholder="4chan.org">
+    <button id="submit">Submit</button>
+    <div class="status hidden">Your vote has been received</div>
+
+    <script>
+        var regex = /[\w]+\.[a-zA-Z]+/
+        document.getElementById("submit").addEventListener("click", function (ev) {
+            var status = document.getElementsByClassName('status')[0]
+            var value = document.getElementById("imageboardName").value
+
+            if (!regex.test(value)) {
+                status.classList.remove("hidden", "success")
+                status.classList.add("error")
+                status.innerHTML = "Invalid format"
+                return
+            }
+
+            var btn = this
+            btn.setAttribute("disabled", true)
+            var req = new XMLHttpRequest()
+            req.open('POST', '/api/modules/request', true)
+            status.classList.remove("error", "success")
+            status.classList.add("hidden")
+            req.onreadystatechange = function () {
+                if (req.readyState != 4) return
+
+                if (req.status != 200) {
+                    var json = {}
+                    try {
+                        JSON.parse(req.responseText)
+                    } catch(e) {}
+
+                    var error = json.error || req.statusText || 'Unknown error'
+                    status.innerHTML = error
+                    status.classList.remove("hidden", "success")
+                    status.classList.add('error')
+
+                    btn.removeAttribute('disabled')
+                } else {
+
+                }
+            }
+
+            req.onerror = function () {
+                status.classList.innerHTML = 'Unknown error'
+                status.classList.remove("hidden", "success")
+                status.classList.add('error')
+                btn.removeAttribute('disabled')
+            }
+
+            req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            req.send('name='+encodeURIComponent(value))
+        })
+    </script>
+</body>
+</html>

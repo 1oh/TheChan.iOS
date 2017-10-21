@@ -12,7 +12,7 @@ Gray text #716c6c;
 /* Staff
  ================================== */
  html, body {
-	background-color: #111;
+	background-color: #000;
 	color: #FFF;
 	font-family: -apple-system, BlinkMacSystemFont, "Roboto", serif;
 	line-height: 1.5;
@@ -107,7 +107,7 @@ section {
 /* Idea
  ================================== */
 .request__block {
-	background: #1a1a1a;
+	background: #111;
 	border-radius: 10px;
 	padding: 1em;
 	margin: 0 0 1em 1em;
