@@ -3,6 +3,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+	padding: 20px 0;
 }
 
 img {
@@ -97,5 +98,11 @@ button:disabled {
 @media screen and (min-height: 670px) {
     h1 { 
         font-size: 48px;
+    }
+}
+
+@media screen and (min-height: 480px) {
+    body {
+        padding: 0;
     }
 }
