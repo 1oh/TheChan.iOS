@@ -18,7 +18,7 @@
     </div>
     <input type="text" id="imageboardName" placeholder="4chan.org">
     <button id="submit" disabled>Submit</button>
-    <div class="status hidden">Your vote has been received</div>
+    <div class="status hidden"></div>
 
     <script>
         var regex = /[\w]+\.[a-zA-Z]+/
@@ -27,7 +27,7 @@
         document.getElementById("imageboardName").addEventListener("input", function () {
             var value = this.value
             
-            if (regex.test(value)) {
+            if (regex.test(value) && value != '4chan.org') {
                 submitButton.removeAttribute("disabled")
             } else {
                 submitButton.setAttribute("disabled", "")
@@ -60,7 +60,7 @@
 
                     btn.removeAttribute('disabled')
                 } else {
-                    status.innerHTML = 'Your vote has been received. Thanks'
+                    status.innerHTML = 'Your vote has been received. Thanks!'
                     status.classList.remove("hidden", "error")
                     status.classList.add('success')
                 }
