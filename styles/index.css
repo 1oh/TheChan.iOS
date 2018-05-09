@@ -97,7 +97,7 @@ a:hover {
     justify-content: flex-start;
     padding: 40px 0 40px 40px;
     box-sizing: padding-box;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.3);
