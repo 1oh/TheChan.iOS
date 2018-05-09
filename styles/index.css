@@ -76,15 +76,6 @@ a:hover {
 }
 
 @media screen and (max-width: 960px) {
-  body {
-    display: block;
-  }
-
-  .preview {
-    display: block;
-    height: 100vh;
-    box-sizing: border-box;
-  }
 
   .preview-image {
     display: block;
