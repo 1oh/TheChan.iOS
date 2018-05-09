@@ -18,34 +18,33 @@ body {
 }
 
 h1 {
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: bold;
   font-size: 3.5em;
-  letter-spacing: 5px;
 }
 
 h2 {
-  font-weight: 300;
-  font-size: 1.8em;
+  font-weight: normal;
+  font-size: 1.9em;
   margin-top: 10px;
   margin-bottom: 1em;
 }
 
 a {
-  border-left: 3px solid #CCC;
-  padding: 0.5em 1em;
-  color: #CCC;
+  background: white;
+  padding: 0.5em 0.8em;
+  display: inline-block;
+  color: black;
+  border-radius: 4px;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 1em;
-  margin-top: 1em;
+  margin-right: 1em;
   transition: all 0.1s ease-in-out;
 }
 
 a:hover {
-  border-color: #FFF;
-  color: #FFF;
+  opacity: 0.9;
 }
 
 .preview {
@@ -73,6 +72,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
 }
 
 @media screen and (max-width: 960px) {
@@ -81,25 +81,35 @@ a:hover {
   }
 
   .preview {
-    height: 100%;
+    display: block;
+    height: 100vh;
     box-sizing: border-box;
   }
 
   .preview-image {
+    display: block;
     margin: 0;
+    height: 100%;
     background-position-x: center;
   }
 
   .info {
     justify-content: flex-start;
-    padding-left: 40px;
-    padding-bottom: 40px;
+    padding: 40px 0 40px 40px;
+    box-sizing: padding-box;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-backdrop-filter: blur(10px);
   }
 }
 
 @media screen and (max-width: 720px){
   h1 {
-    font-size: 2.5em;
+    font-size: 3em;
   }
 
   h2 {
@@ -113,6 +123,6 @@ a:hover {
   }
 
   .info {
-    padding-top: 20px; 
+    padding: 20px 40px; 
   }
 }
